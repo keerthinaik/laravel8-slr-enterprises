@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Area;
+use App\Models\Customer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,13 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->text('address');
-            $table->string('gst_no');
-            $table->string('phone_no')->nullable();
-            $table->foreignIdFor(Area::class);
+            $table->timestamp('creation_time');
+            $table->foreignIdFor(Customer::class);
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('invoices');
     }
 };

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class InvoiceItem extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
 
-    public function area()
+    public function item()
     {
-        return $this->hasOne(Area::class, 'id','area_id');
+        return $this->hasOne(Item::class, 'id','item_id');
     }
 }

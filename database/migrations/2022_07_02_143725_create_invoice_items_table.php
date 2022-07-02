@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Area;
+use App\Models\Invoice;
+use App\Models\Item;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,13 +15,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->text('address');
-            $table->string('gst_no');
-            $table->string('phone_no')->nullable();
-            $table->foreignIdFor(Area::class);
+            $table->foreignIdFor(Invoice::class);
+            $table->foreignIdFor(Item::class);
+            $table->double('rate', 8, 2);
+            $table->float('quantity', 8, 2);
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('invoice_items');
     }
 };

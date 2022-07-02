@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('slr.layouts.base')
 @section('content')
     <div class="row">
         <div class="col-8">
