@@ -12,40 +12,33 @@
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
           crossorigin="anonymous">
 </head>
-<body class="container mt-4">
-    <div class="">
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="">Invoice</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Customers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Items</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Category</a>
-            </li>
-            <li>
-                <div class="float-end">
-                    @if (Route::has('login'))
-                        <div class="">
-                            @auth
-                                <a href="{{ url('/dashboard') }}"
-                                   class="btn btn-primary">Dashboard</a>
-                            @else
-                                <a href="{{ route('login') }}" class="btn btn-primary">Log in</a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
-                                @endif
-                            @endauth
-                        </div>
-                    @endif
+<body>
+<div class="">
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">SLR ENTERPRISES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" aria-current="page" href="">Invoice</a>
+                    <a class="nav-link {{ request()->routeIs('items') ? 'active' : '' }}" href="{{ route('items') }}">Items</a>
+                    <a class="nav-link {{ request()->routeIs('categories') ? 'active' : '' }}"
+                       href="{{ route('categories') }}">Category</a>
+                    <a class="nav-link {{ request()->routeIs('areas') ? 'active' : '' }}" href="{{ route('areas') }}">Area</a>
                 </div>
-            </li>
-        </ul>
-    </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    @yield('content')
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
 </body>
 </html>

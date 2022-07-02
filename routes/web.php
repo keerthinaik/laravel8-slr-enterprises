@@ -27,6 +27,8 @@ Route::post('category/add', [ItemCategoryController::class, 'add'])->name('add.c
 Route::get('items', [ItemController::class, 'index'])->name('items');
 Route::post('item/add', [ItemController::class, 'add'])->name('add.item');
 
+// ItemCategory Controller
+Route::get('areas', [ItemCategoryController::class, 'index'])->name('areas');
 
 Route::middleware([
     'auth:sanctum',
