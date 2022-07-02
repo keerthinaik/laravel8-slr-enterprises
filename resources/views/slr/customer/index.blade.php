@@ -80,7 +80,6 @@
                                         @foreach($areas as $area)
                                             <option value="{{ $area->id }}">{{ $area->name }}</option>
                                         @endforeach
-                                        <option value="100">testing</option>
                                     </select>
                                     @error('area_id')
                                     <span class="text-danger">{{ $message }}</span>

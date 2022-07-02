@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Item;
+use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class InvoiceController extends Controller
 {
+
     function index() {
         $invoices = Invoice::all();
         return view('slr.invoice.index', compact('invoices'));
@@ -66,5 +68,14 @@ class InvoiceController extends Controller
 
     function print(Request $request) {
         $invoice = Invoice::find($request->id);
+        $pdf = new FPDF('P','mm','A4');
+        $pdf->SetTitle('Invoice # : '.$invoice->id);
+        $pdf->SetMargins(0,0,0);
+        $pdf->SetAutoPageBreak(false);
+        $pdf->SetFont('Arial', 'B', 15);
+        $pdf->AddPage();
+        $pdf->Text(10, 10, "Hello My World!");
+        $pdf->Output();
+        exit;
     }
 }

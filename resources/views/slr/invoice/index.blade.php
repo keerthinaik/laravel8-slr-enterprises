@@ -15,18 +15,20 @@
                         </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            @foreach($invoices as $invoice)
-                                <tr>
-                                    <th scope="row">{{ $invoice->id }}</th>
-                                    <td>{{ $invoice->customer->name }}</td>
-                                    <td>{{ $invoice->customer->area->name }}</td>
-                                    <td>{{ \App\Utils\Invoice\InvoiceUtils::calculateTotal($invoice) }}</td>
-                                    <td>
-                                        <a href="{{ route('invoice', [ 'id' =>$invoice->id]) }}"
-                                           class="btn btn-info">View</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach($invoices as $invoice)
+                            <tr>
+                                <th scope="row">{{ $invoice->id }}</th>
+                                <td>{{ $invoice->customer->name }}</td>
+                                <td>{{ $invoice->customer->area->name }}</td>
+                                <td>{{ \App\Utils\Invoice\InvoiceUtils::calculateTotal($invoice) }}</td>
+                                <td>
+                                    <a href="{{ route('invoice', [ 'id' =>$invoice->id]) }}"
+                                       class="btn btn-info">View</a>
+                                    <a href="{{ route('print.invoice', ['id' => $invoice->id]) }}"
+                                       class="btn btn-secondary">Print</a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

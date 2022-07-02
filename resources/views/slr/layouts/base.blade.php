@@ -27,7 +27,7 @@
 <div class="mb-3">
     <nav class="navbar navbar-dark navbar-expand-lg bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="#">SLR ENTERPRISES</a>
+            <a class="navbar-brand" href="{{ route('home') }}">SLR ENTERPRISES</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
