@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ItemCategoryController;
+use App\Http\Controllers\item\ItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// ItemCategory Controller
+Route::get('categories', [ItemCategoryController::class, 'index'])->name('categories');
+Route::post('category/add', [ItemCategoryController::class, 'add'])->name('add.category');
+
+// Item Controller
+Route::get('items', [ItemController::class, 'index'])->name('items');
+Route::post('item/add', [ItemController::class, 'add'])->name('add.item');
+
 
 Route::middleware([
     'auth:sanctum',
