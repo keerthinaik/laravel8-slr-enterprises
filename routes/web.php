@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ItemCategoryController;
-use App\Http\Controllers\item\ItemController;
+use App\Http\Controllers\slr\ItemCategoryController;
+use App\Http\Controllers\slr\ItemController;
+use App\Http\Controllers\slr\AreaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,9 @@ Route::post('category/add', [ItemCategoryController::class, 'add'])->name('add.c
 Route::get('items', [ItemController::class, 'index'])->name('items');
 Route::post('item/add', [ItemController::class, 'add'])->name('add.item');
 
-// ItemCategory Controller
-Route::get('areas', [ItemCategoryController::class, 'index'])->name('areas');
+// Area Controller
+Route::get('areas', [AreaController::class, 'index'])->name('areas');
+Route::post('area/add', [AreaController::class, 'add'])->name('add.area');
 
 Route::middleware([
     'auth:sanctum',

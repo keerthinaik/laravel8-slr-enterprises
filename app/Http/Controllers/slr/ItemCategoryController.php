@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\slr;
 
+use App\Http\Controllers\Controller;
 use App\Models\ItemCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -10,7 +11,7 @@ class ItemCategoryController extends Controller
 {
     function index() {
         $itemCategories = ItemCategory::all();
-        return view('item_category.index', compact('itemCategories'));
+        return view('slr.item_category.index', compact('itemCategories'));
     }
 
     function add(Request $request) {

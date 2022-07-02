@@ -1,12 +1,11 @@
 <?php
 
 
-namespace App\Http\Controllers\item;
+namespace App\Http\Controllers\slr;
 
 use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\ItemCategory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,7 +15,7 @@ class ItemController extends Controller
     {
         $items = Item::all();
         $itemCategories = ItemCategory::all();
-        return view('item.index', compact('items', 'itemCategories'));
+        return view('slr.item.index', compact('items', 'itemCategories'));
     }
 
     function add(Request $request)
