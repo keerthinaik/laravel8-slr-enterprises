@@ -77,18 +77,24 @@
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="itemCategoryId" class="form-label">Item Category</label>
-                                    <select class="form-select" aria-label="category" id="itemCategoryId"
-                                            name="item_category_id">
-                                        <option value="" selected>-----------------------</option>
+                                    <label for="item-category-selector" class="form-label">Item Category</label>
+                                    <select class="form-select" id="item-category-selector"
+                                            data-placeholder="Select Category" name="item_category_id">
+                                        <option></option>
                                         @foreach($itemCategories as $itemCategory)
                                             <option value="{{ $itemCategory->id }}">{{ $itemCategory->name }}</option>
                                         @endforeach
-                                        <option value="100">ttete</option>
                                     </select>
                                     @error('item_category_id')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
+                                    <script>
+                                        $('#item-category-selector').select2({
+                                            theme: "bootstrap-5",
+                                            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                                            placeholder: $(this).data('placeholder'),
+                                        });
+                                    </script>
                                 </div>
                             </div>
                             <div class="col-6">

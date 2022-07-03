@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Item;
+use App\Utils\Invoice\InvoicePdfUtils;
+use App\Utils\Invoice\InvoiceUtils;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -68,13 +70,18 @@ class InvoiceController extends Controller
 
     function print(Request $request) {
         $invoice = Invoice::find($request->id);
-        $pdf = new FPDF('P','mm','A4');
+        $pdf = new FPDF('L','mm',array(210, 148.5));
         $pdf->SetTitle('Invoice # : '.$invoice->id);
         $pdf->SetMargins(0,0,0);
         $pdf->SetAutoPageBreak(false);
         $pdf->SetFont('Arial', 'B', 15);
-        $pdf->AddPage();
-        $pdf->Text(10, 10, "Hello My World!");
+
+        $i = 0;
+        $totalPageCount = $invoice->invoiceItems->count() / InvoiceUtils::$invoiceItemsPerPageCount;
+        while ($i < $totalPageCount) {
+            InvoicePdfUtils::createPage($pdf, $invoice);
+            $i++;
+        }
         $pdf->Output();
         exit;
     }

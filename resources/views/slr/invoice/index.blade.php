@@ -20,7 +20,7 @@
                                 <th scope="row">{{ $invoice->id }}</th>
                                 <td>{{ $invoice->customer->name }}</td>
                                 <td>{{ $invoice->customer->area->name }}</td>
-                                <td>{{ \App\Utils\Invoice\InvoiceUtils::calculateTotal($invoice) }}</td>
+                                <td>{{ number_format(round(\App\Utils\Invoice\InvoiceUtils::calculateTotal($invoice))).' ₹' }}</td>
                                 <td>
                                     <a href="{{ route('invoice', [ 'id' =>$invoice->id]) }}"
                                        class="btn btn-info">View</a>

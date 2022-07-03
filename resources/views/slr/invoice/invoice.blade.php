@@ -134,7 +134,7 @@
                             <td></td>
                             <td></td>
                             <td><b>TOTAL : </b></td>
-                            <td>{{ $total }}</td>
+                            <td>{{ number_format(round(\App\Utils\Invoice\InvoiceUtils::calculateTotal($invoice))).' ₹' }}</td>
                             <td>
                             </td>
                         </tr>

@@ -73,10 +73,10 @@
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="areaId" class="form-label">Area</label>
-                                    <select class="form-select" aria-label="category" id="areaId"
-                                            name="area_id">
-                                        <option value="" selected>-----------------------</option>
+                                    <label for="area-selector" class="form-label">Area</label>
+                                    <select class="form-select" id="area-selector"
+                                            data-placeholder="Select Area" name="area_id">
+                                        <option></option>
                                         @foreach($areas as $area)
                                             <option value="{{ $area->id }}">{{ $area->name }}</option>
                                         @endforeach
@@ -84,6 +84,13 @@
                                     @error('area_id')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
+                                    <script>
+                                        $('#area-selector').select2({
+                                            theme: "bootstrap-5",
+                                            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                                            placeholder: $(this).data('placeholder'),
+                                        });
+                                    </script>
                                 </div>
                             </div>
                             <div class="col-6">
