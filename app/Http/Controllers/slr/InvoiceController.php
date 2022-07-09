@@ -82,7 +82,7 @@ class InvoiceController extends Controller
             InvoicePdfUtils::createPage($pdf, $invoice);
             $i++;
         }
-        $pdf->Output();
+        $pdf->Output('I','invoice_'.$invoice->id.'.pdf');
         exit;
     }
 }

@@ -9,7 +9,7 @@ use App\Models\InvoiceItem;
 
 class InvoiceUtils
 {
-    public static $invoiceItemsPerPageCount = 1;
+    public static $invoiceItemsPerPageCount = 10;
 
     public static function calculateTotal(Invoice $invoice)
     {
