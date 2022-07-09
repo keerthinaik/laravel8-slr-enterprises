@@ -62,7 +62,7 @@ class InvoicePdfUtils
         $pdf->cell(210, 5, ClientUtils::$clientAddressLine1, 0, 1, 'C');
 
         $pdf->cell(22, 5, 'Invoice No:', 0, 0, 'R');
-        $pdf->cell(28, 5, str_pad($invoice->id, 6, '0', STR_PAD_LEFT), 0, 0, 'L');
+        $pdf->cell(28, 5, str_pad($invoice->id, 4, '0', STR_PAD_LEFT), 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'BU', 12);
         $pdf->cell(110, 5, 'Cash/Credit Bill', 0, 0, 'C');
@@ -103,7 +103,7 @@ class InvoicePdfUtils
         $subTotal = 0;
         while ($pageItemCount < InvoiceUtils::$invoiceItemsPerPageCount && $index < $invoiceItems->count()) {
             $invoiceItem = $invoiceItems[$index];
-            $amount = InvoiceUtils::calculateAmount($invoiceItem);
+            $amount = $invoiceItem->rate * $invoiceItem->quantity;
             $pdf->SetFont('Arial', '', 10);
             $pdf->cell(15, 5, $slno, 0, 0, 'C');
             $pdf->cell(62, 5, $invoiceItem->item->name, 0, 0, 'C');

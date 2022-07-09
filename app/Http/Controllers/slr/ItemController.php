@@ -27,6 +27,7 @@ class ItemController extends Controller
             'sgst' => 'required',
             'cgst' => 'required',
             'igst' => 'required',
+            'rate' => 'required',
             'item_category_id' => 'required|exists:item_categories,id',
         ], [
             'item_category_id.required' => 'Please Select Category',

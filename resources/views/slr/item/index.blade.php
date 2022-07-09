@@ -75,7 +75,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="mb-3">
                                     <label for="item-category-selector" class="form-label">Item Category</label>
                                     <select class="form-select" id="item-category-selector"
@@ -97,7 +97,7 @@
                                     </script>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="mb-3">
                                     <label for="itemMrp" class="form-label">MRP</label>
                                     <input type="number" name="mrp" class="form-control" id="itemMrp"
@@ -109,7 +109,17 @@
                             </div>
                             <div class="col-4">
                                 <div class="mb-3">
-                                    <label for="itemSgst" class="form-label">SGST</label>
+                                    <label for="itemMrp" class="form-label">Rate</label>
+                                    <input type="number" name="rate" class="form-control" id="itemRate"
+                                           placeholder="rate" value="0">
+                                    @error('rate')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <label for="itemSgst" class="form-label">SGST %</label>
                                     <input type="number" name="sgst" class="form-control" id="itemSgst"
                                            placeholder="sgst">
                                     @error('sgst')
@@ -119,7 +129,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="mb-3">
-                                    <label for="itemCgst" class="form-label">CGST</label>
+                                    <label for="itemCgst" class="form-label">CGST %</label>
                                     <input type="number" name="cgst" class="form-control" id="itemCgst"
                                            placeholder="cgst">
                                     @error('cgst')
@@ -129,7 +139,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="mb-3">
-                                    <label for="itemIgst" class="form-label">IGST</label>
+                                    <label for="itemIgst" class="form-label">IGST %</label>
                                     <input type="number" name="igst" class="form-control" id="itemIgst"
                                            placeholder="igst" value="0">
                                     @error('igst')

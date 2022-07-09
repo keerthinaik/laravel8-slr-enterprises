@@ -21,9 +21,9 @@
                                     <label for="item-selector" class="form-label">Item</label>
                                     <select class="form-select" id="item-selector"
                                             data-placeholder="Select Item" name="item_id">
-                                        <option></option>
+                                        <option itemRate="{{ 0 }}"></option>
                                         @foreach($items as $item)
-                                            <option value="{{ $item->id }}">
+                                            <option value="{{ $item->id }}" item_rate="{{ $item->rate }}">
                                                 {{ $item->name.' ( '.$item->item_category->name.' ) '.' ( '.$item->mrp.' ) ' }}
                                             </option>
                                         @endforeach
@@ -37,6 +37,12 @@
                                             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
                                             placeholder: $(this).data('placeholder'),
                                         });
+                                        $("#item-selector").change(function(){
+                                            var selectedItemRate = $( "#item-selector option:selected" )
+                                                .attr('item_rate');
+                                            $('#rate').val(selectedItemRate);
+                                        });
+
                                     </script>
                                 </div>
                             </div>
@@ -95,9 +101,10 @@
                             <th scope="col">Particulars</th>
                             <th scope="col">Hsn Code</th>
                             <th scope="col">Mrp</th>
+                            <th scope="col">Rate</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">SGST</th>
                             <th scope="col">CGST</th>
-                            <th scope="col">Rate</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -108,7 +115,7 @@
                         @endphp
                         @foreach($invoice->invoiceItems as $invoiceItem)
                             @php
-                                $amount = \App\Utils\Invoice\InvoiceUtils::calculateAmount($invoiceItem);
+                                $amount = $invoiceItem->rate * $invoiceItem->quantity;
                                 $total = $total + $amount;
                             @endphp
                             <tr>
@@ -116,9 +123,10 @@
                                 <td>{{ $invoiceItem->item->name }}</td>
                                 <td scope="col">{{ $invoiceItem->item->hsn_code }}</td>
                                 <td scope="col">{{ $invoiceItem->item->mrp }}</td>
-                                <td scope="col">{{ $invoiceItem->item->sgst }}</td>
-                                <td scope="col">{{ $invoiceItem->item->cgst }}</td>
                                 <td scope="col">{{ $invoiceItem->rate }}</td>
+                                <td scope="col">{{ $invoiceItem->quantity }}</td>
+                                <td scope="col">{{ $invoiceItem->item->sgst.'%' }}</td>
+                                <td scope="col">{{ $invoiceItem->item->cgst.'%' }}</td>
                                 <td scope="col">{{ $amount }}</td>
                                 <td>
                                     <a href="{{ route('deleteItem.invoice', [ 'id' =>request()->id, 'invoiceItemId' =>$invoiceItem->id]) }}"
@@ -128,6 +136,7 @@
                         @endforeach
                         <tr>
                             <th scope="row"></th>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

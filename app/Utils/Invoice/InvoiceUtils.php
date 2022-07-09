@@ -9,23 +9,13 @@ use App\Models\InvoiceItem;
 
 class InvoiceUtils
 {
-    public static $invoiceItemsPerPageCount = 10;
-
-    public static function calculateAmount(InvoiceItem $invoiceItem)
-    {
-        $item = $invoiceItem->item;
-        $rate = $invoiceItem->rate;
-        $quantity = $invoiceItem->quantity;
-        $totalTaxPercent = $item->sgst + $item->cgst + $item->igst;
-        $amount = ($rate + (($totalTaxPercent / 100) * $rate)) * $quantity;
-        return $amount;
-    }
+    public static $invoiceItemsPerPageCount = 1;
 
     public static function calculateTotal(Invoice $invoice)
     {
         $total = 0;
         foreach ($invoice->invoiceItems as $invoiceItem) {
-            $total = $total + self::calculateAmount($invoiceItem);
+            $total = $total + ($invoiceItem->rate * $invoiceItem->quantity);
         }
         return $total;
     }

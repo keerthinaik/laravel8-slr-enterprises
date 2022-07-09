@@ -70,7 +70,7 @@ class InvoiceController extends Controller
 
     function print(Request $request) {
         $invoice = Invoice::find($request->id);
-        $pdf = new FPDF('L','mm',array(210, 148.5));
+        $pdf = new FPDF('P','mm', 'A4');
         $pdf->SetTitle('Invoice # : '.$invoice->id);
         $pdf->SetMargins(0,0,0);
         $pdf->SetAutoPageBreak(false);
